@@ -5,78 +5,37 @@ let Completedbtn = document.querySelector(".CompletedSection");
 let tasklist = document.querySelector(".tasklist");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-
+let currentTasks = tasks;
 /*---Planned---*/
 
 plannedbtn.addEventListener("click", function (e) {
   e.preventDefault();
-  tasklist.innerHTML = "";
-  if (tasks) {
-    tasks.forEach(function (task) {
-      tasklist.innerHTML += `<div class ="task"><li>${task.title}</li><li>${task.Category}</li><li>${task.DueDate}</li><li>${task.Description}</li><li>${task.Imp}</li><li>${task.Completedstatus}</li><button class="Deletebtn" onclick="deleteTask(${task.id})">Delete Task</button>
-      <button class="Editbtn" onclick="editTask(${task.id})">Edit Task</button></div>`;
-    });
-  } else {
-    tasklist.innerHTML = `No Tasks Here`;
-  }
+  renderTasks(tasks);
 });
 
 /*--- MY DAY----*/
 
 MyDaybtn.addEventListener("click", function (e) {
   e.preventDefault();
-  tasklist.innerHTML = "";
-
-  let now = new Date().toISOString().split("T")[0];
-  let flag = false;
-  tasks.forEach(function (task) {
-    if (task.DueDate === now) {
-      tasklist.innerHTML += `<div class ="task"><li>${task.title}</li><li>${task.Category}</li><li>${task.DueDate}</li><li>${task.Description}</li><li>${task.Imp}</li><li>${task.Completedstatus}</li><button class="Deletebtn" onclick="deleteTask(${task.id})">Delete Task</button>
-      <button class="Editbtn" onclick="editTask(${task.id})">Edit Task</button></div>`;
-      flag = true;
-    }
-  });
-  if (!flag) {
-    tasklist.innerHTML = `<a>No task for today</a>`;
-  }
+  let today = new Date().toISOString().split("T")[0];
+  let currentTasks = tasks.filter((task) => task.DueDate === today);
+  renderTasks(currentTasks);
 });
 
 /*---Importantbtn---*/
 
 Importantbtn.addEventListener("click", function (e) {
   e.preventDefault();
-  let flag = false;
-  tasklist.innerHTML = "";
-
-  tasks.forEach(function (task) {
-    if (task.Imp) {
-      tasklist.innerHTML += `<div class ="task"><li>${task.title}</li><li>${task.Category}</li><li>${task.DueDate}</li><li>${task.Description}</li><li>${task.Imp}</li><li>${task.Completedstatus}</li><button class="Deletebtn" onclick="deleteTask(${task.id})">Delete Task</button>
-      <button class="Editbtn" onclick="editTask(${task.id})">Edit Task</button></div>`;
-      flag = true;
-    }
-  });
-  if (!flag) {
-    tasklist.innerHTML = `<a>No Important Tasks</a>`;
-  }
+  let currentTasks = tasks.filter((task) => task.Imp);
+  renderTasks(currentTasks);
 });
 
 /*---Completed---*/
 
 Completedbtn.addEventListener("click", function (e) {
   e.preventDefault();
-  let flag = false;
-  tasklist.innerHTML = "";
-
-  tasks.forEach(function (task) {
-    if (task.Completedstatus) {
-      tasklist.innerHTML += `<div class ="task"><li>${task.title}</li><li>${task.Category}</li><li>${task.DueDate}</li><li>${task.Description}</li><li>${task.Imp}</li><li>${task.Completedstatus}</li><button class="Deletebtn" onclick="deleteTask(${task.id})">Delete Task</button>
-      <button class="Editbtn" onclick="editTask(${task.id})">Edit Task</button></div>`;
-      flag = true;
-    }
-  });
-  if (!flag) {
-    tasklist.innerHTML = `<a>No Completed Tasks</a>`;
-  }
+  let currentTasks = tasks.filter((task) => task.Completedstatus);
+  renderTasks(currentTasks);
 });
 
 /*---Dark Mode---*/
@@ -85,3 +44,29 @@ let darkMode = document.querySelector(".darkMode");
 darkMode.addEventListener("change", function () {
   document.body.classList.toggle("dark", darkMode.checked);
 });
+
+/*---sorting---*/
+
+let sort = document.querySelector(".sort");
+sort.addEventListener("change", function () {
+  if (sort.value === "A to Z") {
+    currentTasks.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sort.value === "Z to A") {
+    currentTasks.sort((a, b) => b.title.localeCompare(a.title));
+  } else if (sort.value === "Due Date") {
+    currentTasks.sort((a, b) => new Date(a.DueDate) - new Date(b.DueDate));
+  }
+
+  renderTasks(currentTasks);
+});
+function renderTasks(taskspara) {
+  tasklist.innerHTML = "";
+  if (taskspara) {
+    tasks.forEach(function (task) {
+      tasklist.innerHTML += `<div class ="task"><li>${task.title}</li><li>${task.Category}</li><li>${task.DueDate}</li><li>${task.Description}</li><li>${task.Imp}</li><li>${task.Completedstatus}</li><button class="Deletebtn" onclick="deleteTask(${task.id})">Delete Task</button>
+      <button class="Editbtn" onclick="editTask(${task.id})">Edit Task</button></div>`;
+    });
+  } else {
+    taskList.innerHTML = `NO TASKS HERE`;
+  }
+}
