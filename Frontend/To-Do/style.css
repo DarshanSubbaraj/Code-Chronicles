@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+}
+
+aside {
+  width: 220px;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background-color: grey;
+}
+
+.PlannedSection,
+.MyDaySection,
+.ImpSection,
+.AllSection,
+.CompletedSection {
+  background-color: grey;
+  cursor: pointer;
+  padding: 10px 40px;
+  align-items: center;
+  border: 0;
+}
+
+main {
+  margin: 30px;
+}
+
+.task {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px grey;
+  padding: 10px 40px;
+  margin: 10px;
+}
