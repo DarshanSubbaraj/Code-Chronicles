@@ -2,7 +2,6 @@ let plannedbtn = document.querySelector(".PlannedSection");
 let MyDaybtn = document.querySelector(".MyDaySection");
 let Importantbtn = document.querySelector(".ImpSection");
 let Completedbtn = document.querySelector(".CompletedSection");
-
 let main = document.querySelector("main");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];

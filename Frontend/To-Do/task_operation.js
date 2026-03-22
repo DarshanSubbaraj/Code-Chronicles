@@ -4,9 +4,9 @@ let DueDate = document.querySelector(".DueDate");
 let Description = document.querySelector(".Description");
 let Important = document.querySelector(".Important");
 let completed = document.querySelector(".status");
-let AddTaskbtn = document.querySelector(".AddTaskbtn");
-if (AddTaskbtn) {
-  AddTaskbtn.addEventListener("click", function (e) {
+let uploadTask = document.querySelector(".uploadTask");
+if (uploadTask) {
+  uploadTask.addEventListener("click", function (e) {
     e.preventDefault();
     let task = {
       id: Date.now(),
