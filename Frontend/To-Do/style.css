@@ -4,8 +4,21 @@
   box-sizing: border-box;
 }
 
+:root {
+  --aside-bg: grey;
+  --taskcard: black;
+  --main-body: white;
+}
+
+.dark {
+  --aside-bg: #211d1d;
+  --taskcard: white;
+  --main-body: black;
+}
+
 body {
   display: flex;
+  background-color: var(--main-body);
 }
 
 aside {
@@ -15,7 +28,7 @@ aside {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  background-color: grey;
+  background-color: var(--aside-bg);
 }
 
 .PlannedSection,
@@ -23,15 +36,17 @@ aside {
 .ImpSection,
 .AllSection,
 .CompletedSection {
-  background-color: grey;
+  background-color: var(--aside-bg);
   cursor: pointer;
   padding: 10px 40px;
   align-items: center;
   border: 0;
+  color: var(--taskcard);
 }
 
 main {
   margin: 30px;
+  width: 100%;
 }
 
 .task {
@@ -40,10 +55,20 @@ main {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  background-color: black;
-  color: white;
+  background-color: var(--taskcard);
+  color: var(--main-body);
   border-radius: 10px;
-  box-shadow: 2px 2px 2px grey;
+  box-shadow: 2px 2px 2px var(--aside-bg);
   padding: 10px 40px;
   margin: 10px;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 40px;
 }
