@@ -2,7 +2,32 @@
 <html lang = "en">
     <head>
         <title>Product Filter</title>
-        <meta charset="UTF-8">
-        <meta name="viewport", content="width: display-width, "
+        <meta charset="UTF-8"> 
+        <link rel="stylesheet" href="style.css">
     </head>
+        
+    <body>
+        <nav>
+            <div class="search">
+            <input type="text" name="search">
+            <button class="submitbtn">Search</button>
+            </div>
+            <div class="sort">
+            <select name="sort">
+                <option>Default</option>
+                <option>Price: Descending</option>
+                <option>Price: Ascending</option>
+            </select>
+        </div>
+        <div class="filter">
+            <input type="checkbox" class="categoryselect">Electronics
+            <input type="checkbox" class="categoryselect">Footwear
+            <input type="checkbox" class="categoryselect">Furniture
+            <input type="checkbox" class="categoryselect">Clothing
+        </div>
+        </nav>
+        <div class="product-container">
+        <script src=script.js></script>
+        </div>
+    </body>
 </html>

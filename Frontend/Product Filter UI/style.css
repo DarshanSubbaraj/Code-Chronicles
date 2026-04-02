@@ -1,0 +1,35 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.product-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cards
+{
+    border: 1px solid black;
+    padding: 10px 40px;
+    margin: 10px 40px;
+    height:150px;
+    width: 400px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px grey;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cards:hover
+{
+    transform: scale(1.05);
+}
+
+nav{
+    margin: 10px 40px;
+    display: flex;
+justify-content: space-around;
+align-items: center;
+}
